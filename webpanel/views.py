@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Server
 
 servers = [
     {
@@ -19,7 +20,7 @@ servers = [
 
 def index(request):
     context= {
-        'servers': servers
+        'servers': Server.objects.all()
     }
     return render(request, 'webpanel/index.html', context)
 
