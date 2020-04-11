@@ -15,9 +15,29 @@
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+    </div><!-- /.container-->
   </div>
-  <button type="button" class="btn btn-success btn-lg">Stop the server</button>
-  <!-- /.content-header -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+      {% for server in servers %}
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title">{{server.Name}}</h1>
+            <p class="card-text">
+              Server IP: {{server.IP}} <br>
+              Server Port: {{server.Port}} <br>
+              Server Status: {{server.Status}}
+            </p>
+            <button type="button" class="btn btn-success btn-lg">Start</button>
+            <button type="button" class="btn btn-danger btn-lg">Stop</button>
+            <button type="button" class="btn btn-warning btn-lg">Restart</button>
+            <button type="button" class="btn btn-info btn-lg">Infos</button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock content %}
