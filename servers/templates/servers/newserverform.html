@@ -1,0 +1,56 @@
+{% extends 'webpanel/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!-- general form elements -->
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <div class="content-wrapper">
+                <div class="wrapper">
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">New server</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                     {{ form.Name|as_crispy_field }}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.IP|as_crispy_field }}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.Port|as_crispy_field }}
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    {{ form.User|as_crispy_field }}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.Password|as_crispy_field }}
+                                                </div>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock content %}
