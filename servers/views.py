@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django import forms
 from django.contrib import messages
 from .forms import NewServerForm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def newserver(request):
     if request.method == 'POST':
         form = NewServerForm(request.POST)

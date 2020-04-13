@@ -530,7 +530,7 @@
     };
     var Default = {
       autoCollapseSize: 992,
-      enableRemember: false,
+      enableRemember: true,
       noTransitionAfterReload: true
     };
     var Selector = {
