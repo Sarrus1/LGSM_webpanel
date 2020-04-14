@@ -25,13 +25,13 @@
           <div class="card-body">
             <h1 class="card-title">{{server.Name}}</h1>
             <p class="card-text">
-              Server IP: {{server.IP}} <br>
-              Server Port: {{server.Port}} <br>
+              Server IP: To be added <br>
+              Server Port: To be added <br>
             </p>
-            <button type="button" class="btn btn-success btn-lg">Start</button>
-            <button type="button" class="btn btn-danger btn-lg">Stop</button>
-            <button type="button" class="btn btn-warning btn-lg">Restart</button>
-            <button type="button" class="btn btn-info btn-lg">Infos</button>
+            <a target="_blank" class="btn btn-success btn-lg" href="{% url 'controlserver' server_path=server.Path control='start' %}">Start</a>
+            <a target="_blank" class="btn btn-danger btn-lg" href="{% url 'controlserver' server_path=server.Path control='stop' %}">Stop</a>
+            <a target="_blank" class="btn btn-warning btn-lg" href="{% url 'controlserver' server_path=server.Path control='restart' %}">Restart</a>
+            <a target="_blank" class="btn btn-warning btn-lg" href="{% url 'controlserver' server_path=server.Path control='update' %}">Update</a>
           </div>
         </div>
         {% endfor %}

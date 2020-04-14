@@ -24,5 +24,5 @@ urlpatterns = [
     path('newserver/', server_views.newserver, name='New Server'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', users_views.logout_views, name='logout'),
-    path('', include('webpanel.urls'))
+    path('', include('webpanel.urls')),
 ]
