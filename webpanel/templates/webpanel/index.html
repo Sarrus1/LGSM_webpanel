@@ -31,7 +31,7 @@
             <a target="_blank" class="btn btn-success btn-lg" href="{% url 'controlserver' server_path=server.Path control='start' %}">Start</a>
             <a target="_blank" class="btn btn-danger btn-lg" href="{% url 'controlserver' server_path=server.Path control='stop' %}">Stop</a>
             <a target="_blank" class="btn btn-warning btn-lg" href="{% url 'controlserver' server_path=server.Path control='restart' %}">Restart</a>
-            <a target="_blank" class="btn btn-warning btn-lg" href="{% url 'controlserver' server_path=server.Path control='update' %}">Update</a>
+            <a target="_blank" class="btn btn-info btn-lg" href="{% url 'controlserver' server_path=server.Path control='update' %}">Update</a>
           </div>
         </div>
         {% endfor %}
