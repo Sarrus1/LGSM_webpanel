@@ -14,5 +14,5 @@ def index(request):
 
 def controlserver(request, server_path, control):
     if request.POST:
-        subprocess.call(['bash', server_path, control])
+        subprocess.run(['bash', server_path, control])
     return HttpResponse(request.path_info)
