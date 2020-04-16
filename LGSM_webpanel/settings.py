@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'LGSM_webpanel.apps.SuitConfig',
+    'chartjs',
     'webpanel.apps.WebpanelConfig',
     'servers.apps.ServersConfig',
     'users.apps.UsersConfig',

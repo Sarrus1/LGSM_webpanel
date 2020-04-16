@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Server
+from servers.models import Server
 
 admin.site.register(Server)

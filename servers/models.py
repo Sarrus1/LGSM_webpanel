@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+class Server(models.Model):
+    Name = models.CharField(max_length=100)
+    IP = models.GenericIPAddressField()
+    Port = models.IntegerField()
+    Path = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.Name

@@ -1,5 +1,6 @@
 {% extends 'webpanel/base.html' %}
 {% block content %}
+{% load static%}
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -18,15 +19,28 @@
     </div><!-- /.container-->
   </div>
   <div class="container-fluid">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="container-fluid">
     <div class="row">
       <div class="col-sm-6">
       {% for server in servers %}
-        <div class="card">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">{{server.Name}}</h3>
+          </div>
           <div class="card-body">
-            <h1 class="card-title">{{server.Name}}</h1>
             <p class="card-text">
-              Server IP: To be added <br>
-              Server Port: To be added <br>
+              <h4>
+              <u>IP:</u> {{server.IP}} <br>
+              <u>Port:</u> {{server.Port}} <br>
+              </h4>
             </p>
             <a target="_blank" class="btn btn-success btn-lg" href="{% url 'controlserver' server_path=server.Path control='start' %}">Start</a>
             <a target="_blank" class="btn btn-danger btn-lg" href="{% url 'controlserver' server_path=server.Path control='stop' %}">Stop</a>
@@ -34,8 +48,52 @@
             <a target="_blank" class="btn btn-info btn-lg" href="{% url 'controlserver' server_path=server.Path control='update' %}">Update</a>
           </div>
         </div>
-        {% endfor %}
+      {% endfor %}
       </div>
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Area Chart</h3>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <canvas id="areaChart" style="min-height: 100px; height: 200px; max-height: 250px; max-width: 100%;"></canvas>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+    </div>
+    <div>
+      <script>
+      new Chart(document.getElementById("areaChart"), {
+  type: 'line',
+  data: {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+        {
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [28, 48, 40, 19, 86, 27, 90]
+        }
+      ]
+  },
+  options: {
+    title: {
+      display: false,
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      enabled: false
+    }
+  }
+});
+    </script>
     </div>
     <div class="row">
       <div class="col-12">
