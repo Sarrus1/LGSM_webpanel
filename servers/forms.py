@@ -10,3 +10,4 @@ class NewServerForm(forms.ModelForm):
     class Meta:
         model = Server
         fields = ['Name', 'Path', 'IP', 'Port']
+
