@@ -6,32 +6,14 @@ from django.contrib.auth.decorators import login_required
 import subprocess
 from django.views.generic import TemplateView
 from chartjs.views.lines import BaseLineChartView
-
-
-##à supprimer
 import a2s
-from time import strftime
-from servers.models import Server
 
-def playercounter():
-    for server in Server.objects.all():
-        address = (server.IP, server.Port)
-        playernumber=a2s.info(address, timeout=3.0, encoding=None).player_count
-        maxplayer=a2s.info(address, timeout=3.0, encoding=None).max_players
-        now = strftime("%H:%M")
-        serverstat=PlayerCount(timestamp=now, player_count=playernumber, max_player=maxplayer, Name=server)
-        serverstat.save()
-    #to_delete = PlayerCount.objects.values()[:1].get()
-    #PlayerCount.objects.filter(id=to_delete['id']).delete()
-##
 
 @login_required
 def index(request):
-    playercounter()
     context= {
         'servers': Server.objects.all()
     }
-    queryset= (PlayerCount.objects.values())
     return render(request, 'webpanel/index.html', context)
 
 @login_required
@@ -39,16 +21,26 @@ def controlserver(request, server_path, control):
     subprocess.run(['bash', server_path, control])
     return HttpResponse(request.path_info)
 
-def get_data(request):
+@login_required
+def get_data(request, server_name):
     labels = []
     number = []
-    queryset = PlayerCount.objects.all()[:]
+    Name_id=Server.objects.get(Name=server_name)
+    queryset = PlayerCount.objects.filter(Name=Name_id)[:]
     for data in queryset:
         labels.append(data.timestamp)
         number.append(data.player_count)
+    server=Server.objects.get(Name=server_name)
+    address = (server.IP, server.Port)
+    queryset=a2s.info(address, timeout=3.0, encoding=None)
+    max_player=queryset.max_players
     playerdata={
         'labels': labels,
         'data': number,
+        'max': max_player,
     }
-    print(labels)
     return JsonResponse(playerdata)
+
+@login_required
+def admin(request):
+    return render(request, 'admin')

@@ -10,4 +10,4 @@ class PlayerCount(models.Model):
     Name = models.ForeignKey(Server, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.Name
+        return str(self.Name) if self.Name else ''

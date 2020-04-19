@@ -31,7 +31,7 @@
             <a class="nav-link" data-widget="pushmenu" data-enable-remember="true" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Home</a>
+            <a href="{% url 'webpanel-index' %}" class="nav-link">Home</a>
           </li>
         </ul>
         <!-- Right navbar links -->
@@ -59,7 +59,7 @@
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <li class="nav-item">
-                <a href="admin" class="nav-link">
+                <a href="{% url 'admin' %}" class="nav-link">
                   <i class="nav-icon fas fa-th"></i>
                   <p>
                     Manage Servers

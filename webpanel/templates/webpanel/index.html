@@ -51,7 +51,7 @@
         <div class="col-auto d-flex align-items-stretch">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Area Chart</h3>
+              <h3 class="card-title">Player Stats</h3>
             </div>
             <div class="card-body">
               <div class="chart">
@@ -66,7 +66,7 @@
       <script >
         $.ajax({
           method: 'GET',
-          url: '/data/',
+          url: '/data/{{ server.Name }}',
           success: function(data){
             console.log(data)
             new Chart(document.getElementById("areaChart{{ server.Name }}"), {
@@ -102,6 +102,10 @@
         yAxes: [{
           gridLines : {
             display : false,
+          },
+          ticks: {
+            min: 0,
+            max: data.max
           }
         }]
       }

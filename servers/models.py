@@ -7,4 +7,4 @@ class Server(models.Model):
     Path = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.Name
+        return str(self.Name) if self.Name else ''
