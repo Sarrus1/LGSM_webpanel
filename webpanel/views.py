@@ -8,7 +8,6 @@ from django.views.generic import TemplateView
 from chartjs.views.lines import BaseLineChartView
 import a2s
 
-
 @login_required
 def index(request):
     context= {
