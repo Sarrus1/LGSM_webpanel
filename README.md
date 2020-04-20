@@ -11,7 +11,7 @@ For every servers supported by LGSM:
 * Stop
 * Restart
 * Update
-* Responsive AI
+* Responsive UI
 
 For source based servers (even the ones not using LGSM):
 
