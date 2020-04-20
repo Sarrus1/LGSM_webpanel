@@ -1,4 +1,4 @@
-## LGSM_webpanel
+# LGSM_webpanel
 
 A webpanel for Linux Game Server Manager which works even better with source servers.
 
@@ -49,7 +49,6 @@ django-q==1.2.1
 django-suit==2.0a1
 python-a2s==1.1.4
 valve==0.0.0
-python-a2s
 ```
 
 Then install the modules
