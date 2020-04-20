@@ -62,5 +62,63 @@ sudo pip3 install -r requirements.txt
 ```
 sudo mkdir /var/www/LGSM_webpanel
 cd /var/www/LGSM_webpanel
-sudo git clone 
+sudo git clone https://github.com/Sarrus1/LGSM_webpanel.git
+sudo chown www-data:www-data -R /var/www/LGSM_webpanel
 ```
+
+
+**4. Configuring the Apache server**
+
+Edit the default Apache2 website config
+```
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+
+Then copy this at the bottom.
+```
+Listen 1337
+
+<VirtualHost *:1337>
+        <Directory /var/www/LGSM_webpanel/LGSM_webpanel>
+                <Files wsgi.py>
+                        Require all granted
+                </Files>
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/LGSM-error.log
+        CustomLog ${APACHE_LOG_DIR}/LGSM-access.log combined
+        WSGIScriptAlias / /var/www/LGSM_webpanel/LGSM_webpanel/wsgi.py
+        WSGIDaemonProcess LGSM_webpanel python-path=/var/www/LGSM_webpanel
+        WSGIprocessGroup LGSM_webpanel
+        DocumentRoot /var/www
+</VirtualHost>
+
+WSGIPythonPath /var/www/LGSM_webpanel
+```
+
+Press Ctrl+O then Ctrl+X to save and exit.
+
+**5. Changing the permissions for the game server**
+
+For each game server, give ownership of the server files to www-data.
+```
+sudo chown www-data -R /home/gameserver
+```
+
+**6. Create a user for the webinterface**
+
+Type this command to add a superuser to the webinterface.
+```
+sudo python3 /var/www/LGSM_webpanel/manage.py createsuperuser
+```
+And then enter new credentials for the user.
+
+**7. Create a user for the webinterface**
+
+Restart Apache and give enable wsgi.
+```
+sudo a2enmod wsgi
+sudo service apache2 restart
+```
+
+**You can now access the webinterface at http://ipadress:1337**
