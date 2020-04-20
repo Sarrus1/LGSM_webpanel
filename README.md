@@ -1,6 +1,4 @@
-<p align="center">
 # LGSM_webpanel
-</p>
 A webpanel for Linux Game Server Manager which works even better with source servers.
 
 
