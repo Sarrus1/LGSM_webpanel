@@ -114,6 +114,7 @@ And then enter new credentials for the user.
 
 
 **7. Create a Secret Key for the webinterface**
+
 Create a Secret Key on https://miniwebtool.com/fr/django-secret-key-generator/, then paste it in settings.py
 ```
 sudo nano /var/www/LGSM_webpanel/LGSM_webpanel/settings.py
